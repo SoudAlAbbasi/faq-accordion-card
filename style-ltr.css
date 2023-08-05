@@ -1,122 +1,159 @@
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Libre+Franklin:wght@300;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
 :root {
-    --Primary-Title-very-dark-desaturated-blue: hsl(238, 29%, 16%);
-    --Primary-Text-soft-red: hsl(14, 88%, 65%);
-    --Background-gradient-soft-violet: hsl(273, 75%, 66%);
-    --Background-gradient-soft-blue: hsl(240, 73%, 65%);
-    --Neutral-Text-Q-very-dark-grayish-blue: hsl(237, 12%, 33%);
-    --Neutral-Text-A-dark-grayish-blue: hsl(240, 6%, 50%);
-    --Dividers-light-grayish-blue: hsl(240, 5%, 91%);
+  --Primary-Title-very-dark-desaturated-blue: hsl(238, 29%, 16%);
+  --Primary-Text-soft-red: hsl(14, 88%, 65%);
+  --Background-gradient-soft-violet: hsl(273, 75%, 66%);
+  --Background-gradient-soft-blue: hsl(240, 73%, 65%);
+  --Neutral-Text-Q-very-dark-grayish-blue: hsl(237, 12%, 33%);
+  --Neutral-Text-A-dark-grayish-blue: hsl(240, 6%, 50%);
+  --Dividers-light-grayish-blue: hsl(240, 5%, 91%);
 }
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Kumbh Sans", sans-serif;
 }
 body {
-    background: rgb(101,101,231);
-    background: -moz-linear-gradient(0deg, rgba(101,101,231,1) 0%, rgba(175,103,233,1) 100%);
-    background: -webkit-linear-gradient(0deg, rgba(101,101,231,1) 0%, rgba(175,103,233,1) 100%);
-    background: linear-gradient(0deg, rgba(101,101,231,1) 0%, rgba(175,103,233,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6565e7",endColorstr="#af67e9",GradientType=1);
-    background-attachment: fixed;
-    font-family: 'Kumbh Sans', sans-serif;
-    align-content: center;
-    justify-content: center;
+  background-image: linear-gradient(
+    to bottom,
+    var(--Background-gradient-soft-violet),
+    var(--Background-gradient-soft-blue)
+  );
+  max-height: 100vh;
+  background-attachment: fixed;
 }
-main {
+.central {
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container {
-  height: 75vh;
-    background-color: #fff;
-    display: flex;
-    border: none;
-    border-radius: 30px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 920px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.image {
-  width: 50%;
-  background: url('images/bg-pattern-desktop.svg'), url('images/illustration-woman-online-desktop.svg');
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-origin: border-box;
-  position: relative;
-  height: 100%;
-  left: -50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
-.illustration {
-  position: relative;
-order: 1;
-align-self: center;
-}
-
-.faqs {
-    padding: 20px;
-    width: 50%;
-}
-.faqs h2 {
-  font-weight: 700;
+h2 {
   font-size: 2rem;
-  padding-bottom: 20px;
   color: var(--Primary-Title-very-dark-desaturated-blue);
-
+  font-weight: 700;
+  margin-bottom: 20px;
 }
+#faqs-component {
+  width: 100%;
+  max-width: 920px;
+  height: 520px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  grid-gap: 20px;
+  background: #fff url(images/bg-pattern-desktop.svg) no-repeat;
+  background-position: 1200% 60%;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+.box {
+  position: absolute;
+  top: 40%;
+  left: -25%;
+}
+.faqs-accordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.image {
+  position: relative;
+}
+.illustration {
+  background-image: url(images/illustration-woman-online-desktop.svg);
+  background-repeat: no-repeat;
+  background-position: 120% center;
+  height: 100%;
+}
+
+.faqs-accordion {
+  margin: 0 15px;
+}
+
 .question {
+  cursor: pointer;
+  padding: 15px 0;
+  width: 100%;
   border: none;
+  text-align: left;
+  outline: none;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: 0.333s ease-in-out;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--Neutral-Text-Q-very-dark-grayish-blue);
+}
+.question:hover {
+  color: var(--Primary-Text-soft-red);
+}
+
+.active {
+  font-weight: 700;
+}
+
+.arrow {
+  align-self: center;
+  transition: 0.333s ease-in-out;
+  margin-right: 15px;
+}
+.active .arrow {
+  transform: rotate(-180deg);
+}
+
+.answer {
+  font-size: 14px;
+  color: var(--Neutral-Text-A-dark-grayish-blue);
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.333s ease-in-out;
   border-bottom: 1px solid var(--Dividers-light-grayish-blue);
 }
-.accordion {
-    background-color: #fff;
-    color: var(--Neutral-Text-Q-very-dark-grayish-blue);
-    cursor: pointer;
-    padding: 20px 0;
+.answer p {
+  padding-bottom: 15px;
+}
+@media (max-width: 767px) {
+  #faqs-component {
+    display: flex;
+    flex-direction: column;
+    background: #fff url(images/bg-pattern-mobile.svg) no-repeat;
+    background-position: top;
+    background-size: 80%;
+    height: fit-content;
+    padding: 20px 20px 60px;
+  }
+  .image {
     width: 100%;
-    border: none;
-    font-size: 16px;
-    text-align: left;
-    outline: none;
-    transition: 0.333s ease-in-out;
-  }  
-  .accordion:after {
-    content: url('images/icon-arrow-down.svg');
-    float: right;
-    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .accordion:hover {
-    color: var(--Primary-Text-soft-red);
+  .illustration {
+    content: url(images/illustration-woman-online-mobile.svg);
+    background: none;
+    width: 88%;
+    position: relative;
+    align-self: center;
+    top: -60%;
   }
-  .active:after {
-    content: url('images/icon-arrow-up.svg');
+.faqs-accordion {
+  top: -60%;
+
+}
+  .central {
+    margin: 20px;
+    padding-top: 100px;
   }
-  .active {
-    font-weight: 700;
+  .box {
+    display: none;
   }
-  .panel {
-    padding: 0;
-    background-color: white;
-    font-size: 14px;
-    color: var(--Neutral-Text-A-dark-grayish-blue);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.333s ease-out;
+  h2 {
+    text-align: center;
+    padding: 20px;
   }
-  .panel p {
-    padding: 0;
-    padding-bottom: 20px;
-    margin-right: 20px;
-  }
+}
